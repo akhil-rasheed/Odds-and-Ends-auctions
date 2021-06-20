@@ -1,0 +1,19 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Watchlisted items for <strong>{{user}}</strong></h2>
+    {% for listing in listings %}
+        <div class="col-md-4" style="padding:20px;">
+            <div style="display:inline-block; padding:15px; background-color: rgb(91, 97, 97);">
+                <div>
+                    <img class="img-responsive" src="{{listing.image_url}}" width="100%"/>
+                    <br />
+                    <h2><a href="/listings/{{listing.id}}">{{listing.title}}</a></h2>
+                    <h2 class="pull-right">${{listing.starting_bid}}</h2> 
+                    <h4 class="pull-right">by <strong>{{listing.poster}}</strong></h4>                  
+                    <p class="text-justify">{{listing.description}}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

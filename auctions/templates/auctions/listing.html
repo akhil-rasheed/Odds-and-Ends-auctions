@@ -1,0 +1,85 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="wrapper">
+    <h2>{{listing.title}}</h2>
+    <h3>by user <strong>{{listing.poster}}</strong></h3>
+    <div id = "image">
+        <img src="{{listing.image_url}}" width="100%">
+    </div>
+    {% if is_watchlisted %}
+    <div class='watchlist'>
+        <form method="POST" action="{% url 'remove_watchlist' listing.pk %}">
+            {% csrf_token %}
+            <input type='submit', value='Remove watchlist'>
+        </form> 
+    </div>
+    {% else %}
+    <div class="watchlist">
+        <form method="POST" action="{% url 'add_watchlist' listing.pk %}">
+            {% csrf_token %}
+            <input type='submit', value='Add to watchlist'>
+        </form>
+    </div>
+    {% endif %}
+    <div id= "information">
+        <h3>Current Bid : <strong>${{ current_price }}</strong></h3>
+        {% if is_poster %}
+            <form method="POST" action = {% url 'close_bids' listing.pk %}>
+                {% csrf_token %}
+                <input type="submit" value="Close"> Close Bids
+            </form>
+        {% endif %}
+        <br>
+        {% if listing.is_closed %}
+        <h4>The owner has closed bids for this post</h4>
+            {% if request.user == listing.highest_bidder %}
+            <div class="isa_success">
+                Congrats! You have won the bidding for this item.
+            </div>
+            {% endif %}
+        {% else %}
+        <h5>Make a Bid!</h5>
+        <form method="POST" action="{% url 'create_bid' listing.pk %}">
+            {% csrf_token %}
+            {% for field in form %}
+            {{ field }}
+            {% if field.errors %}
+                <div class="isa_warning">
+                    {{ field.errors}}
+                </div>
+            {% endif %}
+            {% endfor %}
+            <input type="submit" value="Bid">
+            {% endif %}
+            {% if messages %}
+            <div class="isa_success">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </form>
+        <br>
+        <br>
+        {{listing.description}}
+    </div>
+</div>
+
+<div class="comment_section">
+    <h2>Comments</h2>
+    {% for comment in Comments %}
+        <div class="comment">
+            <strong>{{comment.commenter}}:</strong><br>
+            {{comment.comment_text}}
+        </div>
+    {% endfor %}
+    <br>
+    <h4>Make a comment!</h4>
+    <form method="POST" action="{% url 'add_comment' listing.pk %}">
+        {% csrf_token %}
+        {{ c_form }}
+         <input type="submit" value = "comment">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,102 @@
+body {
+    background-color: black;
+}
+
+h1,h2 {
+    color: cornsilk;
+}
+
+h3 {
+    color: lightseagreen;
+}
+
+#sign_in_status {
+    color: rgb(41, 118, 119);
+    padding: 5px;
+}
+.col-md-4 {
+    background-color: black;
+}
+form {
+    color: cornsilk;
+    width: 50%;
+}
+
+/* These two are for the listing page */
+#image {
+    width: 40%;
+    float: left;
+    padding: 5px;
+}
+
+#information {
+    float: left;
+    width: 60%;
+    color: cornsilk;
+    background-color: #343a40;
+    word-wrap: normal;
+    height: 500px;
+    padding: 10px;
+}
+
+/* container of listing in index view(and categoty, search etc) */
+.listing {
+    width: 40%;
+    float: left;
+}
+
+/* listing itself in index view */
+.listing_c {
+    height: 750px;
+    float: left;
+    background-color: #343a40;
+    
+}
+
+.comment_section{
+    color: rgb(41, 41, 41);
+    margin-top: 500px;
+    padding: 10px;
+}
+
+.comment {
+    padding: 5px;
+    background-color: rosybrown;
+}
+
+.isa_warning {
+    margin: 10px 0px;
+    padding:5px;
+    color: #D8000C;
+    background-color: #FFD2D2;
+}
+
+.isa_success {
+    margin: 10px 0px;
+    padding:5px;
+    color: #4F8A10;
+    background-color: #DFF2BF;
+} 
+
+.watchlist {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+}
+
+.nav-item {
+    margin-right: 20px;
+}
+
+.btn {
+    color: grey;
+    border-color: indianred;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.form-inline {
+    align-self: right;
+}
